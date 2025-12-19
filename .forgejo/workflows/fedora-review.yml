@@ -1,0 +1,25 @@
+name: "Run fedora-review"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push:
+    runs-on: docker
+    container:
+      image: fedora:43
+
+      # https://pagure.io/FedoraReview/issue/541
+      options: --privileged
+
+    steps:
+      - name: Clone the repository
+        uses: actions/checkout@v6
+
+      - name: Run local fedora-review action
+        uses: frostyx/fedora-review-ci/.forgejo/actions/fedora-review@main
+        with:
+          spec: light.spec
+          name: light
