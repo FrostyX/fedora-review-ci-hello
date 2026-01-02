@@ -21,5 +21,8 @@ jobs:
       - name: Run local fedora-review action
         uses: frostyx/fedora-review-ci/.forgejo/actions/fedora-review@main
         with:
+          # Ideally, we want the package name to be automatically recognized
+          # from the repository name and enable overrides only for those we
+          # need them.
           spec: light.spec
           name: light
